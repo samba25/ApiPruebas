@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace ApiPruebas.Repository.Models
+namespace ApiPruebas.MongoRepo.Models
 {
 	public class CityRepository : SimpleValueRepository
 	{

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiPruebas.Repository.Services
+namespace ApiPruebas.MongoRepo.Services
 {
-	public class PersonRepositoryService
+	public class StateRepositoryService
 	{
 	}
 }

@@ -1,4 +1,4 @@
-﻿using ApiPruebas.Models;
+﻿using ApiPruebas.Domain.Models;
 using Common.Models.Data;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace ApiPruebas.Repository.Models
+namespace ApiPruebas.MongoRepo.Models
 {
 	public class DocumentRepository
 	{
