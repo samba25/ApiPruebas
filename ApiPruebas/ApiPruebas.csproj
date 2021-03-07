@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Dtos\" />
+    <Folder Include="Repository\Contracts\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
