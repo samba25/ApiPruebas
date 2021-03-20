@@ -1,4 +1,5 @@
-﻿using Common.Models.Data;
+﻿using ApiPruebas.Domain.Models.Common;
+using Common.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.Domain.Models
 {
-	public class Person
+	public class Person : IModel
 	{
 		public string Name { get; set; }
 		public string LastName { get; set; }

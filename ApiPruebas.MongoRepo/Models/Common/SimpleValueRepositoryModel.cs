@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
-namespace ApiPruebas.MongoRepo.Models
+namespace ApiPruebas.MongoRepo.Models.Common
 {
-	public class SimpleValueRepository
+	public class SimpleValueRepositoryModel:IRepoModel
 	{
 		[DataMember]
 		public string Description { get; set; }
