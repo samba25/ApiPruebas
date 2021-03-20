@@ -1,4 +1,5 @@
-﻿using ApiPruebas.Domain.Models.Configurations;
+﻿using ApiPruebas.Domain.Models.Common;
+using ApiPruebas.Domain.Models.Configurations;
 using ApiPruebas.MongoRepo.Models.Common;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -8,8 +9,9 @@ using System.Text;
 
 namespace ApiPruebas.MongoRepo.Services.Common
 {
-	public abstract class BaseRepository<TModel>
-		where TModel : IRepoModel
+	public abstract class BaseRepository<TModel, TOutModel>
+		where TModel : IRepoModel<TModel, TOutModel>
+		where TOutModel : class, IModel
 	{
 		public abstract string DatabaseName { get; }
 		public abstract string CollectionName { get; }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Services.Common
 {
-	public abstract class SimpleValueRepository<TModel, TOutModel> : BaseRepository<TModel>
-		where TModel : SimpleValueRepositoryModel
-		where TOutModel : IModel
+	public abstract class SimpleValueRepository<TModel, TOutModel> : BaseRepository<TModel, TOutModel>
+		where TModel : IRepoModel<TModel, TOutModel>
+		where TOutModel : class, IModel
 	{
 
 		public SimpleValueRepository(IOptions<AppConfiguration> config) : base(config)
