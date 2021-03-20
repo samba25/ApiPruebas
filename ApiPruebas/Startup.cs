@@ -1,3 +1,4 @@
+using ApiPruebas.Core.Application;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,7 +32,8 @@ namespace ApiPruebas
 		//This method gets called after ConfigureServices
 		public void ConfigureContainer(ContainerBuilder builder)
 		{
-			
+			var injector = new DependencyInjection(builder);
+			injector.InjectServices();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

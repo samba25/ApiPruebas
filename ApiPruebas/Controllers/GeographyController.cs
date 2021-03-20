@@ -1,4 +1,5 @@
-﻿using Common.Models.Data;
+﻿using ApiPruebas.Domain.Contracts.Services;
+using Common.Models.Data;
 using Common.Models.MVC;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,13 +13,17 @@ namespace ApiPruebas.Controllers
 	public class GeographyController
 	{
 
+		public GeographyController(IGeographyService geographyService)
+		{
+			GeographyService = geographyService;
+		}
+
+		public IGeographyService GeographyService { get; }
+
 		[HttpGet("cities/get")]
 		public CustomResult<List<DataRef>> GetCities(string query)
 		{
-			var result = new List<DataRef>()
-			{
-				new DataRef("123","cityTest")
-			};
+			var result = GeographyService.GetCities(query);
 			return ResultFactory.Ok(result);
 		}
 	}
