@@ -11,11 +11,21 @@ namespace ApiPruebas.MongoRepo.Models.Common
 		where TMe : BaseRepositoryModel<TMe, TOut>
 		where TOut : class, IModel
 	{
-		[BsonElement("_id")]
+		[BsonId]
 		[BsonGuidRepresentation(MongoDB.Bson.GuidRepresentation.Standard)]
 		public Guid Id { get; set; } = Guid.NewGuid();
-		public abstract void FromModel(TOut input);
+		public abstract TMe FromModel(TOut input);
 		public abstract TOut ToModel();
+
+		public void TrySetGuid(string id)
+		{
+			var guid = Guid.Empty;
+			var result = Guid.TryParse(id, out guid);
+			if (result == true)
+			{
+				Id = guid;
+			}
+		}
 	}
 
 

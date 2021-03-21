@@ -15,19 +15,19 @@ namespace ApiPruebas.MongoRepo.Models
 		public string Description { get; set; }
 		public DataRefModel Country { get; set; }
 
-		public override void FromModel(City input)
+		public override CityRepositoryModel FromModel(City input)
 		{
-
-			Id = input.Key;
+			TrySetGuid(input.Key);
 			Country = input.Country;
 			Description = input.Value;
+			return this;
 		}
 
 		public override City ToModel()
 		{
 			return new City()
 			{
-				Key = Id,
+				Key = Id.ToString(),
 				Value = Description,
 				Country = Country
 			};

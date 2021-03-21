@@ -22,8 +22,9 @@ namespace ApiPruebas.MongoRepo.Models
 		public List<DataRefModel> Interests { get; set; }
 		public DataRefModel State { get; set; }
 
-		public override void FromModel(Person input)
+		public override PersonRepositoryModel FromModel(Person input)
 		{
+			TrySetGuid(input.Id);
 			Name = input.Name;
 			LastName = input.LastName;
 			BirthDate = input.BirthDate;
@@ -32,12 +33,14 @@ namespace ApiPruebas.MongoRepo.Models
 			Documents = input.Documents.Select(x => new DocumentRepositoryModel(x));
 			Interests = input.Interests;
 			State = input.State;
+			return this;
 		}
 
 		public override Person ToModel()
 		{
 			return new Person()
 			{
+				Id = Id.ToString(),
 				Name = Name,
 				LastName = LastName,
 				BirthDate = BirthDate,

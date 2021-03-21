@@ -9,17 +9,18 @@ namespace ApiPruebas.MongoRepo.Models.Common
 	{
 		public string Description { get; set; }
 
-		public override void FromModel(DataRefModel input)
+		public override DataRefRepositoryModel FromModel(DataRefModel input)
 		{
-			Id = input.Key;
+			TrySetGuid(input.Key);
 			Description = input.Value;
+			return this;
 		}
 
 		public override DataRefModel ToModel()
 		{
 			return new DataRefModel()
 			{
-				Key = Id,
+				Key = Id.ToString(),
 				Value = Description
 			};
 		}

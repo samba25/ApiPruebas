@@ -11,18 +11,19 @@ namespace ApiPruebas.MongoRepo.Models
 		public string Description { get; set; }
 		public string CountryCode { get; set; }
 
-		public override void FromModel(Country input)
+		public override CountryRepositoryModel FromModel(Country input)
 		{
-			Id = input.Key;
+			TrySetGuid(input.Key);
 			Description = input.Value;
 			CountryCode = input.CountryCode;
+			return this;
 		}
 
 		public override Country ToModel()
 		{
 			return new Country()
 			{
-				Key = Id,
+				Key = Id.ToString(),
 				Value = Description,
 				CountryCode = CountryCode
 			};

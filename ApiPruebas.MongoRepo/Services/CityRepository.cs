@@ -29,6 +29,6 @@ namespace ApiPruebas.MongoRepo.Services
 
 		public async Task<City> Read(string id) => await GetById(id);
 
-		public async Task<CrudOperationResult> Upsert(City value) => await (value);
+		public async Task<CrudOperationResult> Upsert(City value) => await BaseUpsert(new CityRepositoryModel().FromModel(value));
 	}
 }
