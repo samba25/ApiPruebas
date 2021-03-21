@@ -1,5 +1,6 @@
 ﻿using ApiPruebas.Domain.Models.Common;
 using ApiPruebas.Domain.Models.Configurations;
+using ApiPruebas.Domain.Models.Repositories;
 using ApiPruebas.MongoRepo.Models.Common;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
@@ -34,10 +35,14 @@ namespace ApiPruebas.MongoRepo.Services.Common
 		public async Task<TOutModel> GetById(string id)
 		{
 			var filterDefinition = Builders<TModel>.Filter;
-			;
 			var cursor = await Collection.FindAsync(filterDefinition.Eq(x => x.Id, id));
 			var result = cursor.FirstOrDefault();
 			return result == null ? default : result.ToModel();
+		}
+
+		public async Task<CrudOperationResult> BaseUpsert(TModel value)
+		{
+			Collection.UpdateOneAsync(,, new UpdateOptions() { IsUpsert = true });
 		}
 	}
 }

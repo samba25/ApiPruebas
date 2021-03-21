@@ -12,7 +12,8 @@ namespace ApiPruebas.MongoRepo.Models.Common
 		where TOut : class, IModel
 	{
 		[BsonElement("_id")]
-		public string Id { get; set; } = Guid.NewGuid().ToString();
+		[BsonGuidRepresentation(MongoDB.Bson.GuidRepresentation.Standard)]
+		public Guid Id { get; set; } = Guid.NewGuid();
 		public abstract void FromModel(TOut input);
 		public abstract TOut ToModel();
 	}

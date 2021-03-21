@@ -27,11 +27,8 @@ namespace ApiPruebas.MongoRepo.Services
 			throw new NotImplementedException();
 		}
 
-		public async Task<City> Read(string id) => GetById(id);
+		public async Task<City> Read(string id) => await GetById(id);
 
-		public async Task<CrudOperationResult> Upsert(City value)
-		{
-			throw new NotImplementedException();
-		}
+		public async Task<CrudOperationResult> Upsert(City value) => await (value);
 	}
 }
