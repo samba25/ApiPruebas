@@ -22,33 +22,30 @@ namespace ApiPruebas.MongoRepo.Models
 		public List<DataRefModel> Interests { get; set; }
 		public DataRefModel State { get; set; }
 
-		public override PersonRepositoryModel FromModel(Person input)
+		public override void FromModel(Person input)
 		{
-			return new PersonRepositoryModel()
-			{
-				Name = input.Name,
-				LastName = input.LastName,
-				BirthDate = input.BirthDate,
-				Gender = input.Gender,
-				Nationality = input.Nationality,
-				Documents = input.Documents.Select(x => DocumentRepositoryModel.FromModel(x)),
-				Interests = input.Interests,
-				State = input.State
-			};
+			Name = input.Name;
+			LastName = input.LastName;
+			BirthDate = input.BirthDate;
+			Gender = input.Gender;
+			Nationality = input.Nationality;
+			Documents = input.Documents.Select(x => new DocumentRepositoryModel(x));
+			Interests = input.Interests;
+			State = input.State;
 		}
 
-		public override Person ToModel(PersonRepositoryModel value)
+		public override Person ToModel()
 		{
 			return new Person()
 			{
-				Name = value.Name,
-				LastName = value.LastName,
-				BirthDate = value.BirthDate,
-				Gender = value.Gender,
-				Nationality = value.Nationality,
-				Documents = value.Documents.Select(x => DocumentRepositoryModel.ToModel(x)).ToList(),
-				Interests = value.Interests,
-				State = value.State
+				Name = Name,
+				LastName = LastName,
+				BirthDate = BirthDate,
+				Gender = Gender,
+				Nationality = Nationality,
+				Documents = Documents.Select(x => x.ToModel()).ToList(),
+				Interests = Interests,
+				State = State
 			};
 		}
 	}

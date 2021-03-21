@@ -6,6 +6,7 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Services.Common
 {
@@ -28,6 +29,15 @@ namespace ApiPruebas.MongoRepo.Services.Common
 			var conn = new MongoClient(config.Value.ConnectionString);
 			var db = conn.GetDatabase(DatabaseName);
 			Collection = db.GetCollection<TModel>(CollectionName);
+		}
+
+		public async Task<TOutModel> GetById(string id)
+		{
+			var filterDefinition = Builders<TModel>.Filter;
+			;
+			var cursor = await Collection.FindAsync(filterDefinition.Eq(x => x.Id, id));
+			var result = cursor.FirstOrDefault();
+			return result == null ? default : result.ToModel();
 		}
 	}
 }

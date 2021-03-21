@@ -10,26 +10,28 @@ namespace ApiPruebas.MongoRepo.Models
 {
 	public class DocumentRepositoryModel
 	{
+		public DocumentRepositoryModel(Document x)
+		{
+			FromModel(x);
+		}
+
 		[DataMember]
 		public DataRefModel Type { get; set; }
 		[DataMember]
 		public string Value { get; set; }
 
-		public static DocumentRepositoryModel FromModel(Document value)
+		public void FromModel(Document value)
 		{
-			return new DocumentRepositoryModel()
-			{
-				Type = value.Type,
-				Value = value.Value
-			};
+			Type = value.Type;
+			Value = value.Value;
 		}
 
-		public static Document ToModel(DocumentRepositoryModel value)
+		public Document ToModel()
 		{
 			return new Document()
 			{
-				Type = value.Type,
-				Value = value.Value
+				Type = Type,
+				Value = Value
 			};
 		}
 	}

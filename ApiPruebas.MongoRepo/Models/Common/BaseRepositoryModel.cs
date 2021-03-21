@@ -13,8 +13,8 @@ namespace ApiPruebas.MongoRepo.Models.Common
 	{
 		[BsonElement("_id")]
 		public string Id { get; set; } = Guid.NewGuid().ToString();
-		public abstract TMe FromModel(TOut input);
-		public abstract TOut ToModel(TMe input);
+		public abstract void FromModel(TOut input);
+		public abstract TOut ToModel();
 	}
 
 

@@ -11,26 +11,25 @@ namespace ApiPruebas.MongoRepo.Models
 {
 	public class CityRepositoryModel : BaseRepositoryModel<CityRepositoryModel, City>
 	{
+
 		public string Description { get; set; }
 		public DataRefModel Country { get; set; }
 
-		public override CityRepositoryModel FromModel(City input)
+		public override void FromModel(City input)
 		{
-			return new CityRepositoryModel()
-			{
-				Id = input.Key,
-				Country = input.Country,
-				Description = input.Value
-			};
+
+			Id = input.Key;
+			Country = input.Country;
+			Description = input.Value;
 		}
 
-		public override City ToModel(CityRepositoryModel input)
+		public override City ToModel()
 		{
 			return new City()
 			{
-				Key = input.Id,
-				Value = input.Description,
-				Country = input.Country
+				Key = Id,
+				Value = Description,
+				Country = Country
 			};
 		}
 	}

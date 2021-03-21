@@ -21,9 +21,9 @@ namespace ApiPruebas.Controllers
 		public IGeographyService GeographyService { get; }
 
 		[HttpGet("cities/get")]
-		public CustomResult<List<DataRef>> GetCities(string query)
+		public async Task<CustomResult<DataRef>> GetCities(string id)
 		{
-			var result = GeographyService.GetCities(query);
+			var result = await GeographyService.GetCities(id);
 			return ResultFactory.Ok(result);
 		}
 	}
