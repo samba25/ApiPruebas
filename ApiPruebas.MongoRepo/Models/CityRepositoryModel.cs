@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Models
 {
-	public class CityRepositoryModel : BaseRepoModel<CityRepositoryModel, City>
+	public class CityRepositoryModel : BaseRepositoryModel<CityRepositoryModel, City>
 	{
-		public string Code { get; set; }
 		public string Description { get; set; }
 		public DataRefModel Country { get; set; }
 
@@ -20,7 +19,6 @@ namespace ApiPruebas.MongoRepo.Models
 			return new CityRepositoryModel()
 			{
 				Id = input.Key,
-				Code = input.CityCode,
 				Country = input.Country,
 				Description = input.Value
 			};
@@ -32,7 +30,6 @@ namespace ApiPruebas.MongoRepo.Models
 			{
 				Key = input.Id,
 				Value = input.Description,
-				CityCode = input.Code,
 				Country = input.Country
 			};
 		}

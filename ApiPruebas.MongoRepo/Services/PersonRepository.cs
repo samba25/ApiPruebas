@@ -10,13 +10,13 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Services
 {
-	public class PersonRepositoryService : BaseRepository<PersonRepositoryModel, Person>
+	public class PersonRepository : BaseRepository<PersonRepositoryModel, Person>
 	{
-		public PersonRepositoryService(IOptions<ApplicationConfiguration> config) : base(config)
+		public PersonRepository(IOptions<ApplicationConfiguration> config) : base(config)
 		{
 		}
 
 		public override string DatabaseName => "Pruebas";
-		public override string CollectionName => "Genders";
+		public override string CollectionName => "Persons";
 	}
 }

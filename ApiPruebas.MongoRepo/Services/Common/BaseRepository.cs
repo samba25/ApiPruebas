@@ -10,7 +10,7 @@ using System.Text;
 namespace ApiPruebas.MongoRepo.Services.Common
 {
 	public abstract class BaseRepository<TModel, TOutModel>
-		where TModel : IRepoModel<TModel, TOutModel>
+		where TModel : BaseRepositoryModel<TModel, TOutModel>
 		where TOutModel : class, IModel
 	{
 		public abstract string DatabaseName { get; }

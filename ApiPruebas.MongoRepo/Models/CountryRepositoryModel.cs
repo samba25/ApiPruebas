@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ApiPruebas.MongoRepo.Models
 {
-	public class CountryRepositoryModel : BaseRepoModel<CountryRepositoryModel, Country>
+	public class CountryRepositoryModel : BaseRepositoryModel<CountryRepositoryModel, Country>
 	{
 		public string Description { get; set; }
 		public string CountryCode { get; set; }

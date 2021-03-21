@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Models
 {
-	public class PersonRepositoryModel : BaseRepoModel<PersonRepositoryModel, Person>
+	public class PersonRepositoryModel : BaseRepositoryModel<PersonRepositoryModel, Person>
 	{
 		public string Name { get; set; }
 		public string LastName { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ApiPruebas.MongoRepo.Models.Common
 {
-	public class DataRefRepositoryModel : BaseRepoModel<DataRefRepositoryModel, DataRefModel>
+	public class DataRefRepositoryModel : BaseRepositoryModel<DataRefRepositoryModel, DataRefModel>
 	{
 		public string Description { get; set; }
 

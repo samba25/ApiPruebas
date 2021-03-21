@@ -7,7 +7,6 @@ namespace ApiPruebas.Domain.Models
 {
 	public class City : DataRefModel
 	{
-		public string CityCode { get; set; }
 		public DataRefModel Country { get; set; }
 	}
 }
