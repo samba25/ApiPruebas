@@ -18,7 +18,7 @@ namespace ApiPruebas.MongoRepo.Services.Common
 
 		public IMongoCollection<TModel> Collection { get; }
 
-		public BaseRepository(IOptions<AppConfiguration> config)
+		public BaseRepository(IOptions<ApplicationConfiguration> config)
 		{
 			if (config == null || config.Value == null)
 			{

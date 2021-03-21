@@ -10,14 +10,16 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Services
 {
-	public class CityRepository : BaseRepository<CityRepositoryModel,City>
+	public class CityRepository : BaseRepository<CityRepositoryModel, City>
 	{
 
-		public CityRepository(IOptions<AppConfiguration> config) : base(config)
+		public CityRepository(IOptions<ApplicationConfiguration> config) : base(config)
 		{
 		}
 
-		public override string DatabaseName => "";
-		public override string CollectionName => "";
+		public override string DatabaseName => "Pruebas";
+		public override string CollectionName => "Cities";
+
+
 	}
 }

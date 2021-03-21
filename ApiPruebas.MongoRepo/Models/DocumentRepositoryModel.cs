@@ -1,5 +1,5 @@
 ﻿using ApiPruebas.Domain.Models;
-using Common.Models.Data;
+using ApiPruebas.Domain.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace ApiPruebas.MongoRepo.Models
 	public class DocumentRepositoryModel
 	{
 		[DataMember]
-		public DataRef Type { get; set; }
+		public DataRefModel Type { get; set; }
 		[DataMember]
 		public string Value { get; set; }
 

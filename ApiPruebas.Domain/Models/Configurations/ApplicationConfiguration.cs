@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ApiPruebas.Domain.Models.Configurations
 {
-	public class AppConfiguration
+	public class ApplicationConfiguration
 	{
 		public string ConnectionString { get; set; }
 	}

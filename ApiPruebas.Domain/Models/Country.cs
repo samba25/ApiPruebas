@@ -5,9 +5,8 @@ using System.Text;
 
 namespace ApiPruebas.Domain.Models
 {
-	public class City : DataRefModel
+	public class Country : DataRefModel
 	{
-		public string CityCode { get; set; }
-		public DataRefModel Country { get; set; }
+		public string CountryCode { get; set; }
 	}
 }

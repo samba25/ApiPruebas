@@ -1,6 +1,6 @@
 ﻿using ApiPruebas.Domain.Models;
+using ApiPruebas.Domain.Models.Common;
 using ApiPruebas.MongoRepo.Models.Common;
-using Common.Models.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,19 +9,32 @@ using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Models
 {
-	public class CityRepositoryModel : SimpleValueRepositoryModel<CityRepositoryModel,City>
+	public class CityRepositoryModel : BaseRepoModel<CityRepositoryModel, City>
 	{
-		[DataMember]
-		public DataRef Country { get; set; }
+		public string Code { get; set; }
+		public string Description { get; set; }
+		public DataRefModel Country { get; set; }
 
 		public override CityRepositoryModel FromModel(City input)
 		{
-			throw new NotImplementedException();
+			return new CityRepositoryModel()
+			{
+				Id = input.Key,
+				Code = input.CityCode,
+				Country = input.Country,
+				Description = input.Value
+			};
 		}
 
 		public override City ToModel(CityRepositoryModel input)
 		{
-			throw new NotImplementedException();
+			return new City()
+			{
+				Key = input.Id,
+				Value = input.Description,
+				CityCode = input.Code,
+				Country = input.Country
+			};
 		}
 	}
 }
