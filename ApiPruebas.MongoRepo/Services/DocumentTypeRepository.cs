@@ -1,15 +1,18 @@
-﻿using ApiPruebas.Domain.Models.Common;
+﻿using ApiPruebas.Domain.Contracts.Repositories;
+using ApiPruebas.Domain.Models.Common;
 using ApiPruebas.Domain.Models.Configurations;
+using ApiPruebas.Domain.Models.Repositories;
 using ApiPruebas.MongoRepo.Models.Common;
 using ApiPruebas.MongoRepo.Services.Common;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ApiPruebas.MongoRepo.Services
 {
-	public class DocumentTypeRepository : BaseRepository<DataRefRepositoryModel, DataRefModel>
+	public class DocumentTypeRepository : BaseRepository<DataRefRepositoryModel, DataRefModel>, IDocumentTypeRepository
 	{
 		public DocumentTypeRepository(IOptions<ApplicationConfiguration> config) : base(config)
 		{
@@ -17,5 +20,9 @@ namespace ApiPruebas.MongoRepo.Services
 
 		public override string DatabaseName => "Pruebas";
 		public override string CollectionName => "DocumentTypes";
+
+		public Task<CrudOperationResult> Delete(string id) => BaseDelete(GetGuid(id));
+		public Task<DataRefModel> Read(string id) => BaseReadOne(GetGuid(id));
+		public Task<CrudOperationResult> Upsert(DataRefModel value) => BaseUpsertOne(new DataRefRepositoryModel().FromModel(value));
 	}
 }

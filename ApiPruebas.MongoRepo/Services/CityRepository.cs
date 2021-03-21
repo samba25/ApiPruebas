@@ -22,13 +22,10 @@ namespace ApiPruebas.MongoRepo.Services
 		public override string DatabaseName => "Pruebas";
 		public override string CollectionName => "Cities";
 
-		public async Task<CrudOperationResult> Delete(string id)
-		{
-			throw new NotImplementedException();
-		}
+		public async Task<CrudOperationResult> Delete(string id) => await BaseDelete(GetGuid(id));
 
-		public async Task<City> Read(string id) => await GetById(id);
+		public async Task<City> Read(string id) => await BaseReadOne(GetGuid(id));
 
-		public async Task<CrudOperationResult> Upsert(City value) => await BaseUpsert(new CityRepositoryModel().FromModel(value));
+		public async Task<CrudOperationResult> Upsert(City value) => await BaseUpsertOne(new CityRepositoryModel().FromModel(value));
 	}
 }

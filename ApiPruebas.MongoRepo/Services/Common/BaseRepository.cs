@@ -32,18 +32,18 @@ namespace ApiPruebas.MongoRepo.Services.Common
 			Collection = db.GetCollection<TModel>(CollectionName);
 		}
 
-		public async Task<TOutModel> GetById(string id)
+		protected async Task<TOutModel> BaseReadOne(Guid id)
 		{
-			var guid = GetGuid(id);
-			if (guid == Guid.Empty) return default;
+			if (id == Guid.Empty) return default;
 
 			var filterDefinition = Builders<TModel>.Filter;
-			var cursor = await Collection.FindAsync(filterDefinition.Eq(x => x.Id, guid));
+			var cursor = await Collection.FindAsync(filterDefinition.Eq(x => x.Id, id));
 			var result = cursor.FirstOrDefault();
 			return result == null ? default : result.ToModel();
 		}
 
-		public async Task<CrudOperationResult> BaseUpsert(TModel value)
+		//TODO no terminado
+		protected async Task<CrudOperationResult> BaseUpsertOne(TModel value)
 		{
 			var filterBuilder = Builders<TModel>.Filter;
 			var updateBuilder = Builders<TModel>.Update;
@@ -59,7 +59,21 @@ namespace ApiPruebas.MongoRepo.Services.Common
 			return result;
 		}
 
+		//TODO no terminado
+		protected async Task<CrudOperationResult> BaseDelete(Guid id)
+		{
+			var result = new CrudOperationResult();
+			if (id != Guid.Empty)
+			{
+				var filterBuilder = Builders<TModel>.Filter;
+				var deleteResult = await Collection.DeleteOneAsync(filterBuilder.Eq(x => x.Id, id));
+				result.Success = deleteResult.IsAcknowledged && deleteResult.DeletedCount > 0;
+				result.Exists = deleteResult.DeletedCount > 0;
+				result.Id = result.Success ? id.ToString() : "";
+			}
 
+			return result;
+		}
 
 		//Utils
 		protected Guid GetGuid(string id)
